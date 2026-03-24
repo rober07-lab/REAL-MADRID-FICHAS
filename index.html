@@ -11,13 +11,33 @@
         img {
             width: 400px;
         }
+        #contenedor {
+            display: flex;
+            justify-content: space-around;
+            background-color: antiquewhite;
+            padding: 20px;
+        }
+        #contenedor div {
+            background-color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        table#tabla-jugadores,td{
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
     </style>
 </head>
 <body>
+    
     <h1>Jugadores del Real Madrid</h1>
+    <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A151339248&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/rizki-hidayat-8" title="Rizki Hidayat 7" target="_blank" style="color: #cccccc; text-decoration: none;">Rizki Hidayat 7</a> · <a href="https://soundcloud.com/rizki-hidayat-8/hala-madrid-y-nada-m-s-la" title="Hala Madrid y Nada Más - La canción de la Décima.mp3" target="_blank" style="color: #cccccc; text-decoration: none;">Hala Madrid y Nada Más - La canción de la Décima.mp3</a></div>
     <div id="contenedor">
 
     </div>
+    <table id="tabla-jugadores">
+
+    </table>
     <script>
         let jugadores=[
             {
@@ -71,6 +91,47 @@
 
             //finalmente agregamos la caja al contenedor
             document.getElementById("contenedor").appendChild(nuevaCaja);
+        }
+
+        let nuevoTRCabecera=document.createElement("tr");
+        let cabeceraNombre=document.createElement("th");
+        cabeceraNombre.innerHTML="Nombre";
+        nuevoTRCabecera.appendChild(cabeceraNombre);
+        document.getElementById("tabla-jugadores").appendChild(nuevoTRCabecera);
+        
+        let cabeceraEdad=document.createElement("th");
+        cabeceraEdad.innerHTML="Edad";
+        nuevoTRCabecera.appendChild(cabeceraEdad);
+
+        let cabeceraFicha=document.createElement("th");
+        cabeceraFicha.innerHTML="Ficha";
+        nuevoTRCabecera.appendChild(cabeceraFicha);
+
+        let cabeceraFoto=document.createElement("th");
+        cabeceraFoto.innerHTML="Foto";
+        nuevoTRCabecera.appendChild(cabeceraFoto);
+
+        for (let jugador of jugadores){
+            let nuevoTR=document.createElement("tr");
+            let tdNombre=document.createElement("td");
+            tdNombre.innerHTML=jugador.nombre;
+            nuevoTR.appendChild(tdNombre);
+
+            let tdEdad=document.createElement("td");
+            tdEdad.innerHTML=jugador.edad;
+            nuevoTR.appendChild(tdEdad);
+
+            let tdFicha=document.createElement("td");
+            tdFicha.innerHTML=jugador.ficha;
+            nuevoTR.appendChild(tdFicha);
+
+            tdFoto=document.createElement("td");
+            let nuevaFoto=document.createElement("img");
+            nuevaFoto.src=jugador.foto;
+            tdFoto.appendChild(nuevaFoto);
+            nuevoTR.appendChild(tdFoto);
+
+            document.getElementById("tabla-jugadores").appendChild(nuevoTR);
         }
     </script>
 </body>
